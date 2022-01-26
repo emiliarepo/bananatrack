@@ -8,7 +8,8 @@ export default function Store({store}) {
                 </div>
                 <div className="text-left">
                     <div className="text-xl font-medium text-black">{store.name}</div>
-                    <p className="text-slate-500">{store.bananaPrice}e/kg</p>
+                    <p className="text-slate-600 font-medium">{store.bananaPrice}e/kg</p>
+                    <p className="text-slate-500 font-light">{store.spotName}</p>
                 </div>
             </a>
         </>

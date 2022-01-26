@@ -39,10 +39,12 @@ async function updatePrices() {
     if (sReq == -1|| !("data" in sReq)) return
 
     const newStores = []
+
     for (const store of sReq['data']['deliveryAreas']) {
         const bReq = await sendReq(`https://cfapi.voikukka.fi/graphql?operationName=GetProductInfoById&variables=%7B%22storeId%22%3A%22${store.storeId}%22%2C%22id%22%3A%222000503600002%22%2C%22includeAgeLimitedByAlcohol%22%3Atrue%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%226ef4387222b1a3834e3353edfec45aaa1a48f05c5fa01e4b3ea0bea211870a95%22%7D%7D`)
         if (bReq == -1 || !("data" in bReq)) continue
         newStores.push({
+            "spotName": store.name,
             "name": store.store.name,
             "address": `${store.address.street}, ${store.address.postalCode} ${store.address.city}`,
             "brand": store.store.brand,
