@@ -1,6 +1,7 @@
 import Head from 'next/head'
-import postcss from 'postcss'
 import Store from './components/store'
+import Header from './components/header'
+import Footer from './components/footer'
 
 export default function Home({stores}) {
   return (
@@ -11,14 +12,7 @@ export default function Home({stores}) {
       </Head>
       <body class="h-full bg-white">
 
-        <div class="">
-          <div class="container mx-auto flex flex-col items-center py-12">
-            <h1 class="text-5xl lg:text-6xl text-center text-gray-800 font-black leading-7 md:leading-10">
-              <span class="text-yellow-500">Banana</span>Track
-            </h1>
-            <p class="mt-5 lg:w-10/12 text-gray-400 font-normal text-center text-sm sm:text-lg">Eeppinen slogan tähän</p>
-          </div>
-        </div>
+        <Header />
 
         <section class="text-gray-600 body-font">
           <div class="container px-5 py-4 mx-auto">
@@ -27,7 +21,7 @@ export default function Home({stores}) {
               <div class="p-4 w-full lg:w-1/2">
                 <div class="h-full bg-gray-100 bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
                   <h1 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Halvimmat banaanit</h1>
-                  {stores.reverse().slice(0, 5).map(store => (
+                  {stores.slice(0, 5).map(store => (
                     <Store store={store} />
                   ))}
                 </div>
@@ -42,9 +36,54 @@ export default function Home({stores}) {
                 </div>
               </div>
 
+              <a href="list" class="p-4 mx-auto text-xl text-yellow-500 font-semibold">Katso kaikki kaupat tästä!</a>
+
             </div>
           </div>
         </section>
+
+
+        <section class="text-gray-600 body-font bg-gray-100 mt-10 pt-8 pb-12">
+          <div class="container px-5 py-4 mx-auto">
+            <div class="flex flex-wrap -m-4 content-start">
+
+              <div class="p-4 w-full lg:w-1/2">
+                <div class="h-full bg-white bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
+                  <h1 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Miksi teemme tätä?</h1>
+                  <p class="font-medium">
+                    Banaani on yksi merkittävimmistä hedelmistä opiskelijan ravinnon kannalta. Se sisältää paljon elimistölle tärkeitä
+                    aineita kuten kuitua, B- ja C-vitamiinia, kaliumia ja mangaania. Banaani on myös erittäin monipuolinen hedelmä: siitä 
+                    voi tehdä esimerkiksi lettuja, muffinseja, leipää tai smoothieita.<br/>
+                    <br/>
+                    Vaikka banaani onkin monia muita hedelmiä halvempi, hinnat vaihtelevat reilusti kaupasta toiseen. Banaanin hinta voi 
+                    olla jopa 50% korkeampi kuin saman ketjun toisessa liikkeessä. Sivumme <b>reaaliaikaisen</b> tiedon ansiosta opiskelijat
+                    pystyvät löytämään mahdollisimman halpoja banaaneja.
+                  </p>
+                </div>
+              </div>
+
+              <div class="p-4 w-full lg:w-1/2">
+                <div class="h-full bg-white bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
+                  <h1 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Missä kauppa _____?</h1>
+                  <p class="font-medium">
+                    Valitettavasti Kesko ei ole vielä ymmärtänyt banaanien merkitystä opiskelijan ravitsemukselle. Banaanifoobisen hCaptchan
+                    takia bottimme ei pääse käsiksi K-kauppojen dataan. K-kaupat ovat kuitenkin S-ryhmän kauppoja kalliimpia, joten tämä
+                    ei ole suuri menetys. <br/>
+                    <br/>
+                    S-ryhmän kaupat ovat tällä hetkellä siirtymässä vanhasta <a href="https://foodie.fi">foodie.fi</a>-alustasta 
+                    uuteen <a href="https://s-kaupat.fi">s-kaupat.fi</a>-alustaan. Kiituribot skannaa dataa vain uuden alustan 
+                    kaupoista, joita on tällä hetkellä <b>{stores.length} kpl</b>.<br/>
+                    <br />
+                    Valitettavasti Alepat eivät tarjoa noutopalvelua, vaan listassa näkyy pelkästään Alepan keskusvarasto.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <Footer />
  
       </body>
     </>
