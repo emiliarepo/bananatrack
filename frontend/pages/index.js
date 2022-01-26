@@ -10,47 +10,47 @@ export default function Home({stores}) {
         <title>Bananatrack</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <body class="h-full bg-white">
+      <body className="h-full bg-white">
 
         <Header />
 
-        <section class="text-gray-600 body-font">
-          <div class="container px-5 py-4 mx-auto">
-            <div class="flex flex-wrap -m-4 content-start">
+        <section className="text-gray-600 body-font">
+          <div className="container px-5 py-4 mx-auto">
+            <div className="flex flex-wrap -m-4 content-start">
 
-              <div class="p-4 w-full lg:w-1/2">
-                <div class="h-full bg-gray-100 bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
-                  <h1 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Halvimmat banaanit</h1>
+              <div className="p-4 w-full lg:w-1/2">
+                <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
+                  <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Halvimmat banaanit</h1>
                   {stores.slice(0, 5).map(store => (
-                    <Store store={store} />
+                    <Store store={store} key={store.name + "c"}/>
                   ))}
                 </div>
               </div>
 
-              <div class="p-4 w-full lg:w-1/2">
-                <div class="h-full bg-gray-100 bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
-                  <h1 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Kalleimmat banaanit</h1>
+              <div className="p-4 w-full lg:w-1/2">
+                <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
+                  <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Kalleimmat banaanit</h1>
                   {stores.slice(-5).reverse().map(store => (
-                    <Store store={store} />
+                    <Store store={store} key={store.name + "e"}/>
                   ))}
                 </div>
               </div>
 
-              <a href="list" class="p-4 mx-auto text-xl text-yellow-500 font-semibold">Katso kaikki kaupat tästä!</a>
+              <a href="list" className="p-4 mx-auto text-xl text-yellow-500 font-semibold">Katso kaikki kaupat tästä!</a>
 
             </div>
           </div>
         </section>
 
 
-        <section class="text-gray-600 body-font bg-gray-100 mt-10 pt-8 pb-12">
-          <div class="container px-5 py-4 mx-auto">
-            <div class="flex flex-wrap -m-4 content-start">
+        <section className="text-gray-600 body-font bg-gray-100 mt-10 pt-8 pb-12">
+          <div className="container px-5 py-4 mx-auto">
+            <div className="flex flex-wrap -m-4 content-start">
 
-              <div class="p-4 w-full lg:w-1/2">
-                <div class="h-full bg-white bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
-                  <h1 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Miksi teemme tätä?</h1>
-                  <p class="font-medium">
+              <div className="p-4 w-full lg:w-1/2">
+                <div className="h-full bg-white bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
+                  <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Miksi teemme tätä?</h1>
+                  <p className="font-medium">
                     Banaani on yksi merkittävimmistä hedelmistä opiskelijan ravinnon kannalta. Se sisältää paljon elimistölle tärkeitä
                     aineita kuten kuitua, B- ja C-vitamiinia, kaliumia ja mangaania. Banaani on myös erittäin monipuolinen hedelmä: siitä 
                     voi tehdä esimerkiksi lettuja, muffinseja, leipää tai smoothieita.<br/>
@@ -62,10 +62,10 @@ export default function Home({stores}) {
                 </div>
               </div>
 
-              <div class="p-4 w-full lg:w-1/2">
-                <div class="h-full bg-white bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
-                  <h1 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Missä kauppa _____?</h1>
-                  <p class="font-medium">
+              <div className="p-4 w-full lg:w-1/2">
+                <div className="h-full bg-white bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
+                  <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Missä kauppa _____?</h1>
+                  <p className="font-medium">
                     Valitettavasti Kesko ei ole vielä ymmärtänyt banaanien merkitystä opiskelijan ravitsemukselle. Banaanifoobisen hCaptchan
                     takia bottimme ei pääse käsiksi K-kauppojen dataan. K-kaupat ovat kuitenkin S-ryhmän kauppoja kalliimpia, joten tämä
                     ei ole suuri menetys. <br/>
@@ -90,7 +90,7 @@ export default function Home({stores}) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 
   const res = await fetch('http://localhost:3008/api/prices')
   const stores = await res.json()
