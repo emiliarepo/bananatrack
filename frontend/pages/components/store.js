@@ -1,4 +1,5 @@
 export default function Store({store}) {
+    if (store == null) return <></>
     return (
         <>
             <a class="p-3 my-4 max-w-l mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4" href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(store.address)}`} target="_blank">
