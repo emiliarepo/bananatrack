@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import Link from 'next/link'
+
 import Store from './components/store'
 import Header from './components/header'
 import Footer from './components/footer'
@@ -18,7 +20,9 @@ export default function List({stores}) {
           <div className="container px-5 py-4 mx-auto">
             <div className="flex flex-wrap -m-4 content-start">
 
-              <a href="/" className="p-4 mx-auto text-xl text-yellow-500 font-semibold">← Etusivulle</a>
+              <Link href="/">
+                <a className="p-4 mx-auto text-xl text-yellow-500 font-semibold">← Etusivulle</a>
+              </Link>
 
               <div className="p-4 w-full lg:px-20">
                 <div className="h-full bg-gray-100 bg-opacity-75 px-8 lg:mx-12 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
@@ -30,7 +34,9 @@ export default function List({stores}) {
                 </div>
               </div>
 
-              <a href="/" className="p-4 mx-auto text-xl text-yellow-500 font-semibold">← Etusivulle</a>
+              <Link href="/">
+                <a className="p-4 mx-auto text-xl text-yellow-500 font-semibold">← Etusivulle</a>
+              </Link>
 
             </div>
           </div>

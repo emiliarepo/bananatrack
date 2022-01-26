@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import Link from 'next/link'
+
 import Store from './components/store'
 import Header from './components/header'
 import Footer from './components/footer'
@@ -35,8 +37,10 @@ export default function Home({stores}) {
                   ))}
                 </div>
               </div>
-
-              <a href="list" className="p-4 mx-auto text-xl text-yellow-500 font-semibold">Katso kaikki kaupat tästä!</a>
+              
+              <Link href="/list">
+                <a className="p-4 mx-auto text-xl text-yellow-500 font-semibold">Katso kaikki kaupat tästä!</a>
+              </Link>  
 
             </div>
           </div>
