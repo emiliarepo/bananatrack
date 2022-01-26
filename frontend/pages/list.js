@@ -29,7 +29,7 @@ export default function List({stores}) {
                   <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Kaikki banaanikaupat</h1>
                   {stores
                     .sort((a, b) => {return a.name.toLowerCase().localeCompare(b.name.toLowerCase())})
-                    .map(store => (<Store store={store} key={store.name + "l"}/>))
+                    .map((store, i) => (<Store store={store} key={i}/>))
                   }
                 </div>
               </div>

@@ -23,8 +23,8 @@ export default function Home({stores}) {
               <div className="p-4 w-full lg:w-1/2">
                 <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
                   <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Halvimmat banaanit</h1>
-                  {stores.slice(0, 5).map(store => (
-                    <Store store={store} key={store.name + "c"}/>
+                  {stores.slice(0, 5).map((store, i) => (
+                    <Store store={store} key={i}/>
                   ))}
                 </div>
               </div>
@@ -32,8 +32,8 @@ export default function Home({stores}) {
               <div className="p-4 w-full lg:w-1/2">
                 <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
                   <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Kalleimmat banaanit</h1>
-                  {stores.slice(-5).reverse().map(store => (
-                    <Store store={store} key={store.name + "e"}/>
+                  {stores.slice(-5).reverse().map((store, i) => (
+                    <Store store={store} key={i}/>
                   ))}
                 </div>
               </div>
