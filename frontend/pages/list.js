@@ -11,10 +11,10 @@ import Footer from './components/footer'
 
 export default function List({ data, length }) {
 
-  const [stores, setStores] = useState(data.slice(0, 50))
+  const [stores, setStores] = useState(data)
 
   const getMore = async () => {
-    const newStores = data.slice(stores.length, stores.length+20)
+    const newStores = await (await fetch('api/prices?offset=' + stores.length)).json()
     setStores((stores) => [...stores, ...newStores])
   }
 
@@ -73,7 +73,7 @@ export default function List({ data, length }) {
 
 export async function getServerSideProps() {
 
-  const res = await fetch('http://localhost:3008/api/prices')
+  const res = await fetch('http://localhost:3008/api/prices?offset=0')
   let data = await res.json()
 
   const length = await (await fetch('http://localhost:3008/api/prices/length')).json()

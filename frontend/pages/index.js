@@ -7,7 +7,7 @@ import Store from './components/store'
 import Header from './components/header'
 import Footer from './components/footer'
 
-export default function Home({stores}) {
+export default function Home({first, last}) {
 
   const [results, setResults] = useState()
 
@@ -28,7 +28,7 @@ export default function Home({stores}) {
               <div className="p-4 w-full lg:w-1/2">
                 <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
                   <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Halvimmat banaanit</h1>
-                  {stores.slice(0, 5).map((store, i) => (
+                  {first.map((store, i) => (
                     <Store store={store} key={i}/>
                   ))}
                 </div>
@@ -37,7 +37,7 @@ export default function Home({stores}) {
               <div className="p-4 w-full lg:w-1/2">
                 <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
                   <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Kalleimmat banaanit</h1>
-                  {stores.slice(-5).reverse().map((store, i) => (
+                  {last.map((store, i) => (
                     <Store store={store} key={i}/>
                   ))}
                 </div>
@@ -60,16 +60,10 @@ export default function Home({stores}) {
                     placeholder="Search"
                     onChange={async (e) => {
                       const { value } = e.currentTarget
-                      // Dynamically load fuse.js
-                      const Fuse = (await import('fuse.js')).default
-                      const fuse = new Fuse(stores, {
-                        keys: [{name: 'spotName', weight: 0.5}, 'address', 'brand', {name: 'name', weight: 2}],
-                      })
-
-                      setResults(fuse.search(value))
+                      setResults(await (await fetch("api/prices/search?q="+value)).json())
                     }}
                   />
-                  {results != null && results.slice(0, 5).map((store, i) => (
+                  {results != null && results.map((store, i) => (
                     <Store store={store.item} key={i}/>
                   ))}
 
@@ -137,11 +131,15 @@ export default function Home({stores}) {
 export async function getServerSideProps() {
 
   // todo: searching in the backend, only show relevant results
-  const stores = await (await fetch('http://localhost:3008/api/prices')).json()
+  const first = (await (await fetch('http://localhost:3008/api/prices?offset=0')).json()).slice(0, 5)
+  const length = await (await fetch('http://localhost:3008/api/prices/length')).json()
+  const last = (await (await fetch('http://localhost:3008/api/prices?offset=' + (parseInt(length)-5).toString())).json()).reverse()
+
 
   return {
     props: {
-      stores
+      first,
+      last
     },
   }
 }
