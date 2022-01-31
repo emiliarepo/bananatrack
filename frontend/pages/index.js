@@ -72,10 +72,17 @@ export default function Home({stores}) {
                   {results != null && results.slice(0, 5).map((store, i) => (
                     <Store store={store.item} key={i}/>
                   ))}
+
+                  <div className="flex justify-center">
+                    <Link href="/list">
+                        <a className="pt-6 mx-auto text-xl text-yellow-500 font-semibold">Katso kaikki kaupat tästä!</a>
+                    </Link> 
+                  </div>
                 </div>
-              </div>  
+              </div> 
 
             </div>
+
           </div>
         </section>
 
@@ -129,12 +136,12 @@ export default function Home({stores}) {
 
 export async function getServerSideProps() {
 
-  const res = await fetch('http://localhost:3008/api/prices')
-  const stores = await res.json()
+  // todo: searching in the backend, only show relevant results
+  const stores = await (await fetch('http://localhost:3008/api/prices')).json()
 
   return {
     props: {
-      stores,
+      stores
     },
   }
 }

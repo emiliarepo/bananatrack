@@ -11,9 +11,25 @@ let stores = JSON.parse(fs.readFileSync('../k-ruoka.json')).filter(a => a.banana
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+
+
 app.get('/api/prices', (req, res) => {
-    res.json(stores.sort((a, b) => a.bananaPrice > b.bananaPrice ? 1 : -1))
+    const theStores = stores.sort((a, b) => {
+        if (a.bananaPrice > b.bananaPrice) return 1
+        if (a.bananaPrice < b.bananaPrice) return -1
+        return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+    })
+    const offset = parseInt(req.query.offset)
+    if (offset != NaN && offset >= 0 && offset <= theStores.length) {
+        res.json(theStores.slice(offset, offset+20))
+    } else {
+        res.json(theStores)
+    }
 });
+
+app.get('/api/prices/length', (req, res) => {
+    res.json(stores.length)
+})
 
 app.listen(port);
 
@@ -59,5 +75,5 @@ async function updatePrices() {
 
     console.log("Refreshed!")
 }
-setInterval(updatePrices, 30*1000)
+setInterval(updatePrices, 30*60*1000)
 updatePrices()
