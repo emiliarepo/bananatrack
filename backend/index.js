@@ -45,7 +45,7 @@ async function updatePrices() {
         if (bReq == -1 || !("data" in bReq)) continue
 
         const index = stores.findIndex(s => s.spotName == store.name)
-        if (index >= 0) stores = stores.splice(index, 1)
+        if (index >= 0) stores.splice(index, 1)
 
         stores.push({
             "spotName": store.name,
@@ -59,5 +59,5 @@ async function updatePrices() {
 
     console.log("Refreshed!")
 }
-setInterval(updatePrices, 30*60*1000)
+setInterval(updatePrices, 30*1000)
 updatePrices()

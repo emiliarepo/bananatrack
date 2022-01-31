@@ -1,11 +1,16 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
+import {useState} from 'react'
+
 import Store from './components/store'
 import Header from './components/header'
 import Footer from './components/footer'
 
 export default function Home({stores}) {
+
+  const [results, setResults] = useState()
+
   return (
     <>
       <Head>
@@ -37,10 +42,38 @@ export default function Home({stores}) {
                   ))}
                 </div>
               </div>
+
+            </div>
+          </div>
+        </section>
+
+        <section className="text-gray-600 body-font">
+          <div className="container px-5 py-4 lg:py-6 mx-auto">
+            <div className="flex justify-center -m-4 content-start">
               
-              <Link href="/list">
-                <a className="p-4 mx-auto text-xl text-yellow-500 font-semibold">Katso kaikki kaupat tästä!</a>
-              </Link>  
+              <div className="p-4 w-full lg:w-1/2">
+                <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
+                  <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Etsi kauppoja</h1>
+                  <input
+                    type="text"
+                    className="bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none shadow-md mb-2"
+                    placeholder="Search"
+                    onChange={async (e) => {
+                      const { value } = e.currentTarget
+                      // Dynamically load fuse.js
+                      const Fuse = (await import('fuse.js')).default
+                      const fuse = new Fuse(stores, {
+                        keys: [{name: 'spotName', weight: 0.5}, 'address', 'brand', {name: 'name', weight: 2}],
+                      })
+
+                      setResults(fuse.search(value))
+                    }}
+                  />
+                  {results != null && results.slice(0, 5).map((store, i) => (
+                    <Store store={store.item} key={i}/>
+                  ))}
+                </div>
+              </div>  
 
             </div>
           </div>
