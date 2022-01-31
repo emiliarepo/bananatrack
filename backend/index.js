@@ -1,11 +1,12 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const fs = require('fs');
 
 const app = express();
 const port = 3008;
 
-let stores = []
+let stores = JSON.parse(fs.readFileSync('../k-ruoka.json')).filter(a => a.bananaPrice != 0)
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ async function sendReq(url) {
         })
 }
 
+
 async function updatePrices() {
     console.log("Refreshing prices...")
 
@@ -53,6 +55,8 @@ async function updatePrices() {
             "bananaPrice": bReq.data.product.comparisonPrice
         })
     }
+
+
     console.log("Refreshed!")
 }
 setInterval(updatePrices, 30*60*1000)

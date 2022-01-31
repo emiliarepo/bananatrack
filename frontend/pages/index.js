@@ -70,13 +70,13 @@ export default function Home({stores}) {
                 <div className="h-full bg-white bg-opacity-75 px-8 pt-8 pb-10 rounded-lg overflow-hidden text-center relative">
                   <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-6">Missä kauppa _____?</h1>
                   <p className="font-medium">
-                    Valitettavasti Kesko ei ole vielä ymmärtänyt banaanien merkitystä opiskelijan ravitsemukselle. Banaanifoobisen hCaptchan
-                    takia bottimme ei pääse käsiksi K-kauppojen dataan. K-kaupat ovat kuitenkin S-ryhmän kauppoja kalliimpia, joten tämä
-                    ei ole suuri menetys. <br/>
+                    Kesko ei ole vielä ymmärtänyt banaanien merkitystä opiskelijan ravitsemukselle. K-ryhmän banaanifoobisten mielipiteiden
+                    takia Kiituribot ei valitettavasti pääase käsiksi reaaliaikaiseen dataan, vaan data pitää hakea manuaalisesti tietyn 
+                    ajan välein.<br/>
                     <br/>
                     S-ryhmän kaupat ovat tällä hetkellä siirtymässä vanhasta <a href="https://foodie.fi">foodie.fi</a>-alustasta 
                     uuteen <a href="https://s-kaupat.fi">s-kaupat.fi</a>-alustaan. Kiituribot skannaa dataa vain uuden alustan 
-                    kaupoista, joita on tällä hetkellä <b>{stores.length} kpl</b>.<br/>
+                    kaupoista, mutta määrä kasvaa joka päivä.<br/>
                     <br />
                     Valitettavasti Alepat eivät tarjoa noutopalvelua, vaan listassa näkyy pelkästään Alepan keskusvarasto.
                   </p>
