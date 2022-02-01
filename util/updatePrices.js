@@ -1,5 +1,4 @@
 import sendReq from "./sendReq";
-import fs from "fs";
 
 const stores = require("./../k-ruoka.json").filter((a) => a.bananaPrice != 0);
 
