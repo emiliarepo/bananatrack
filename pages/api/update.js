@@ -1,5 +1,5 @@
 import updatePrices from "./../../util/updatePrices";
-import { githubSecret } from "./../config";
+import { githubSecret } from "./../../config";
 
 export default function handler(req, res) {
 	try {
