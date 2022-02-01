@@ -1,0 +1,13 @@
+name: Hourly cron job
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Every 30-minute cron job
+        run: |
+          curl --request POST \
+          --url 'https://bananatrack.xyz/api/update' \
+          --header 'Authorization: Bearer ${{ secrets.ACTION_KEY }}'

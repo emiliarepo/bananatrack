@@ -8,12 +8,11 @@ It can only scrape S Group chains automatically as Kesko's sites are blocked by 
 There's an extra tool to scan Kesko stores and create a JSON file of the prices:
 https://www.icloud.com/shortcuts/d14b4da6ed84480c97cb05b1c88a10ce
 
-Built with Next.js, Express and React
+Built with Next.js
 
 ## License
 
 Distributed under the WTFPL License. See the [LICENSE](LICENSE) file for more information
-
 
 ## Demo
 
