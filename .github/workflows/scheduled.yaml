@@ -1,4 +1,4 @@
-name: Hourly cron job
+name: Every 30-minute cron job
 on:
   schedule:
     - cron: "*/30 * * * *"
