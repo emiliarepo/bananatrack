@@ -1,9 +1,7 @@
 import sendReq from "./sendReq";
 import fs from "fs";
 
-const stores = JSON.parse(fs.readFileSync("k-ruoka.json")).filter(
-	(a) => a.bananaPrice != 0
-);
+const stores = require("./../k-ruoka.json").filter((a) => a.bananaPrice != 0);
 
 export default async function updatePrices() {
 	console.log("Refreshing prices...");
