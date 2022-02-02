@@ -1,6 +1,5 @@
 import React from "react";
 import ReactGA from "react-ga";
-require("dotenv").config();
 import "../styles/globals.css";
 
 // This default export is required in a new `pages/_app.js` file.
