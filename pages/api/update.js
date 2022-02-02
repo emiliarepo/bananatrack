@@ -1,10 +1,10 @@
 import updatePrices from "./../../util/updatePrices";
-import { githubSecret } from "./../../config";
+require("dotenv").config();
 
 export default function handler(req, res) {
 	try {
 		const actionKey = req.headers.authorization.split(" ")[1];
-		if (actionKey === githubSecret) {
+		if (actionKey === process.env.GITHUB_SECRET) {
 			updatePrices();
 			res.status(200).json({ success: "true" });
 		} else {

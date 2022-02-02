@@ -1,6 +1,6 @@
 import React from "react";
 import ReactGA from "react-ga";
-import { gAnal } from "./../config";
+require("dotenv").config();
 import "../styles/globals.css";
 
 // This default export is required in a new `pages/_app.js` file.
@@ -26,7 +26,7 @@ class Layout extends React.Component {
 }
 
 const initGA = () => {
-	ReactGA.initialize(gAnal);
+	ReactGA.initialize(process.env.GOOGLE_ANALYTICS_KEY);
 };
 const logPageView = () => {
 	ReactGA.set({ page: window.location.pathname });
